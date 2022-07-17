@@ -1,0 +1,30 @@
+from selenium import webdriver
+
+
+url = "https://operator.koege.dk/"
+
+driver = webdriver.Edge(r"C:\Users\ee82601\OneDrive - Køge Kommune KA\Dokumenter\Programmering\msedgedriver.exe")
+driver.get(url)
+
+
+
+#FIND LOGIN-KNAP OG TRYK PÅ DEN:
+
+python_button = driver.find_elements_by_xpath("//*[@id='agentMenuButton']")[0]
+python_button.click()
+
+# UDFYLD LOGINFELT OG LOGIN
+
+username = driver.find_element_by_id("usernameText")
+password = driver.find_element_by_id("passwordText")
+
+username.send_keys("ee82601")
+password.send_keys("IenLilleGrotte2021")
+
+driver.find_element_by_xpath('//*[@id="loginDiv"]/form/table/tbody/tr[3]/td/div').click()
+driver.maximize_window() #ligger her fordi jeg er doven :-) 
+
+# NÆSTE UDFORDIRNG BLIVER AT HJEMMESIDEN IKKE ER RESPONSIVE
+
+table = driver.find_elements_by_xpath("//*[@id='answer100']")
+print(table)
